@@ -1,0 +1,203 @@
+/* ---------- 设计变量：想换配色，只改这里 ---------- */
+:root {
+  --bg: #f4f6f3;
+  --ink: #18212b;
+  --muted: #5b6672;
+  --line: #d5dbd6;
+  --accent: #0e6b5c;
+  --mark: #f6e27a;
+
+  --serif: "Noto Serif SC", "Source Han Serif SC", "Songti SC", "STSong", "SimSun", Georgia, serif;
+  --sans: system-ui, -apple-system, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans SC", sans-serif;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #121715;
+    --ink: #e8eeea;
+    --muted: #9aa7a0;
+    --line: #2a3430;
+    --accent: #5fd3b8;
+    --mark: #4a4217;
+  }
+}
+
+/* ---------- 基础 ---------- */
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; scroll-padding-top: 4rem; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 1rem;
+  line-height: 1.8;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, p, ul, dl, dd { margin: 0; }
+ul { padding: 0; list-style: none; }
+
+a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.25em;
+}
+a:hover { text-decoration-thickness: 2px; }
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+.wrap {
+  width: 100%;
+  max-width: 46rem;
+  margin-inline: auto;
+  padding-inline: 1.5rem;
+}
+
+.skip {
+  position: absolute;
+  left: 1rem;
+  top: -4rem;
+  padding: 0.5rem 1rem;
+  background: var(--ink);
+  color: var(--bg);
+  z-index: 10;
+}
+.skip:focus { top: 1rem; }
+
+/* ---------- 顶部导航 ---------- */
+.site-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-block: 1.5rem;
+}
+
+.brand {
+  font-family: var(--serif);
+  font-weight: 700;
+  font-size: 1.125rem;
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.site-header nav { display: flex; gap: 1.5rem; }
+.site-header nav a { color: var(--muted); text-decoration: none; }
+.site-header nav a:hover { color: var(--ink); text-decoration: underline; }
+
+/* ---------- 首屏 ---------- */
+.hero { padding-block: clamp(3.5rem, 12vw, 7rem) clamp(3rem, 8vw, 5rem); }
+
+.hero h1 {
+  font-family: var(--serif);
+  font-size: clamp(2.5rem, 8vw, 4.25rem);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.lead {
+  max-width: 30rem;
+  margin-top: 1.75rem;
+  font-family: var(--serif);
+  font-size: clamp(1.125rem, 2.6vw, 1.375rem);
+  line-height: 1.9;
+  color: var(--muted);
+}
+
+/* ---------- 通用区块 ---------- */
+.section {
+  display: grid;
+  grid-template-columns: 7rem 1fr;
+  gap: 1rem 2rem;
+  padding-block: 2.5rem;
+  border-top: 1px solid var(--line);
+}
+
+.section h2 {
+  font-family: var(--serif);
+  font-size: 1.25rem;
+  line-height: 1.6;
+}
+
+.section > :not(h2) { grid-column: 2; }
+
+/* ---------- 简介 ---------- */
+.about { display: grid; gap: 1.25rem; max-width: 36rem; }
+
+.facts { display: grid; gap: 0.5rem; margin-top: 0.75rem; }
+.facts div { display: grid; grid-template-columns: 5.5rem 1fr; gap: 1rem; }
+.facts dt { color: var(--muted); }
+
+/* ---------- 项目 ---------- */
+.projects { display: grid; }
+
+.project {
+  display: grid;
+  grid-template-columns: 4rem 1fr;
+  gap: 1rem;
+  padding-block: 1.5rem;
+  border-top: 1px solid var(--line);
+}
+.project:first-child { border-top: 0; padding-top: 0; }
+.project:last-child { padding-bottom: 0; }
+
+.year { color: var(--muted); font-variant-numeric: tabular-nums; }
+
+.project h3 {
+  font-family: var(--serif);
+  font-size: 1.25rem;
+  line-height: 1.6;
+}
+
+.project h3 a {
+  color: var(--ink);
+  text-decoration: none;
+  background: linear-gradient(var(--mark), var(--mark)) no-repeat 0 90% / 0 45%;
+  transition: background-size 0.25s ease;
+}
+.project h3 a:hover,
+.project h3 a:focus-visible { background-size: 100% 45%; }
+
+.project p:not(.year) { margin-top: 0.25rem; max-width: 34rem; }
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 1rem;
+  margin-top: 0.5rem;
+  font-size: 0.875rem;
+  color: var(--muted);
+}
+
+/* ---------- 联系 ---------- */
+.contact { display: flex; flex-wrap: wrap; gap: 0.25rem 1.5rem; }
+
+/* ---------- 页脚 ---------- */
+.site-footer {
+  padding-block: 2rem 3rem;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 0.875rem;
+}
+
+/* ---------- 手机端 ---------- */
+@media (max-width: 40rem) {
+  .section { grid-template-columns: 1fr; }
+  .section > :not(h2) { grid-column: 1; }
+  .project { grid-template-columns: 1fr; gap: 0; }
+  .facts div { grid-template-columns: 5rem 1fr; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .project h3 a { transition: none; }
+}
